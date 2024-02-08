@@ -1,0 +1,188 @@
+<html>
+<!--Google fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+<style>
+
+/*Navigation bar*/
+*{transition:all 0.3s ease-in-out;
+}
+
+*body{ font-family: "Poppins", sans-serif;}
+
+
+.container{
+  clear:both;
+  overflow:auto;
+}
+
+nav{float:right;}
+
+.logo img{float:left;}
+
+ul li{
+  display: inline-block; padding:10px;
+  font-size:20px; font-family: "Poppins", sans-serif;;
+}
+
+ul li:hover{
+  color:rgb(56, 67, 165);
+  font-weight: bold;
+  
+}
+nav ul li:hover {
+  background-color: #dadcde; /* Highlight the navigation bar tile grey on hover */
+}
+
+
+/*Rule box*/
+#ruleBox {
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 2px solid #ccc;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  z-index: 999;
+}
+
+#closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#closeButton:hover {
+  color: red;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+#ruleBox h2 {
+  margin-top: 0;
+}
+
+#ruleBox ol {
+  margin-bottom: 0;
+
+  .container {
+  display: flex;
+  align-items: center;
+}
+
+button {
+  margin-right: 20px; /* Adjust the margin to create space between the button and the rule box */
+  border: #FFFFFF;
+}
+
+
+.button:hover:before {
+  animation: opacityFallbackIn 0s step-start forwards;
+  clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+}
+
+.button:after {
+  background-color: #FFFFFF;
+}
+
+.button span {
+  z-index: 1;
+  position: relative;
+}
+
+}
+
+
+
+</style>
+<div class="container">
+<div class="logo">
+  <img src="https://github.com/megha-vishwakarma/CogiCare/blob/main/src/assets/img/logo.gif?raw=true" alt="" width="350"/>
+  </div>
+<nav>
+  <ul>
+  <li>Home</li>
+  <li>About</li>
+  <li>Parents potral</li>
+  <li>Help</li>
+  </ul>
+  </nav>
+</div>
+<hr />
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CogniCare|Slide Puzzle</title>
+  <link rel="stylesheet" href="puzzle.css">
+  <script src="puzzle.js"></script>
+</head>
+
+  <body>
+ 
+
+    <button onclick="openRuleBox()" >Open Rule Box</button>
+
+<div id="ruleBox">
+  <button id="closeButton" onclick="closeRuleBox()">X</button>
+  <h2>Rules:</h2>
+  <ol>
+    <li id="rule1">Players can only slide puzzle tiles horizontally or vertically into adjacent empty spaces.</li>
+    <li id="rule2">The objective is to rearrange the tiles to form a specific pattern or sequence, typically with one empty space, by sliding them strategically into the available positions.</li>
+  </ol>
+</div>
+
+
+  <img id="title" src="./logo.png">
+  <div id="board">
+  </div>
+  <h1>Turns: <span id="turns">0</span></h1>
+
+
+<script>
+  
+
+// Function to open the rule box
+function openRuleBox() {
+  document.getElementById("ruleBox").style.display = "block";
+  readRules(); // Call readRules() function when the rule box is opened
+}
+
+// Function to close the rule box
+function closeRuleBox() {
+  document.getElementById("ruleBox").style.display = "none";
+}
+
+// Function to read out the rules using text-to-speech
+function readRules() {
+  var rules = [
+    document.getElementById("rule1").innerText,
+    document.getElementById("rule2").innerText
+  ];
+
+  var speech = new SpeechSynthesisUtterance();
+  speech.text = rules.join(". ");
+  
+  // Initialize speech synthesis
+  var synth = window.speechSynthesis;
+
+  // Cancel the current speech (if any)
+  synth.cancel();
+
+  // Speak the rules
+  synth.speak(speech);
+}
+
+
+</script>
+
+</body>
+</html>
